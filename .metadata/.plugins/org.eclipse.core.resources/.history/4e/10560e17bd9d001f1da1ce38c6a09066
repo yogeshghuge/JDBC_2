@@ -1,0 +1,41 @@
+package com.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.model.Employee;
+import com.util.MyDatabase;
+
+public class EmployeeDao {
+	
+	public int insertEmployee(Employee s)
+	{
+		int check=0;
+		String sql="insert into Employee(ename,edesignation,ecompany,esalary)values(?,?,?,?)";
+		try(Connection con=MyDatabase.myConnection();
+				PreparedStatement pst=con.prepareStatement(sql);){
+			pst.setString(1, s.getEname());
+			pst.setString(2, s.getEdesignation());
+			pst.setString(3, s.getEcompany());
+			pst.setDouble(4, s.getEsalary());
+			check=pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+	public int deleteEmployeeById(int eid)
+	{
+		int check=0;
+		String sql="delete from Employee where eid=?";
+		try(Connection con=MyDatabase.myConnection();
+				PreparedStatement pst=con.prepareStatement(sql);){
+			pst.setInt(1, eid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+}

@@ -1,0 +1,19 @@
+package com.demo;
+
+import com.dao.EmployeeDao;
+import com.model.Employee;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	EmployeeDao ed=new EmployeeDao();
+    	Employee e=new Employee();
+    	e.setEname("Pankaj Patil");
+    	e.setEdesignation("Python developer");
+    	e.setEcompany("Tcs");
+    	e.setEsalary(42500);
+    	System.out.println(ed.insertEmployee(e));
+
+    }
+}

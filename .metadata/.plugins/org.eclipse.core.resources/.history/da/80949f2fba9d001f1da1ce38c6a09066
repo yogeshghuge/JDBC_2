@@ -1,0 +1,30 @@
+package com.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.model.Employee;
+import com.util.MyDatabase;
+
+public class EmployeeDao {
+	
+	public int insertEmployee(Employee s)
+	{
+		int check=0;
+		Connection con=MyDatabase.myConnection();
+		String sql="insert into Employee(ename,edesignation,ecompany,esalary)values(?,?,?,?)";
+		PreparedStatement pst=null;
+		try {
+			pst=con.prepareStatement(sql);
+			pst.setString(1, s.getEname());
+			pst.setString(2, s.getEdesignation());
+			pst.setString(3, s.getEcompany());
+			pst.setDouble(4, s.getEsalary());
+			check=pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+}

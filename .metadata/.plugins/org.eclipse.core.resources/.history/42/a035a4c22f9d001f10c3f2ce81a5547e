@@ -1,0 +1,17 @@
+package com.demo;
+
+import com.dao.StudentDao;
+import com.model.Student1;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	StudentDao sd=new StudentDao();
+    	Student1 s1=new Student1();
+    	s1.setName("Sahil");
+    	s1.setCity("Pune");
+    	s1.setPercentage(89.98);
+    	System.out.println(sd.insertStudent(s1));
+    }
+}
